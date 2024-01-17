@@ -12,7 +12,9 @@ This method utilizes GUI interfaces and CLI to prepare USB boot
     - Insert external usb drive
     - Find your disk be careful and eject if necessary to verify
     *typically /dev/sda if only disk mounted as for example below*
-    ```sudo ls -al /dev/sd*``` 
+    ```
+    sudo ls -al /dev/sd*
+    ``` 
     - Open open fdisk on selected disk
     ```
     sudo fdisk /dev/sda
