@@ -15,31 +15,31 @@ This method utilizes GUI interfaces and CLI to prepare USB boot
     ```
     sudo ls -al /dev/sd*
     ``` 
-    - Open open fdisk on selected disk
-    ```
-    sudo fdisk /dev/sda
-    ```
-    - Expect return
-    Welcome to fdisk (util-linux 2.37.2).
-    Changes will remain in memory only, until you decide to write them.
-    Be careful before using the write command.
-    
-    Device does not contain a recognized partition table.
-    Created a new DOS disklabel with disk identifier 0x2c5a44ea.
-    
-    Command (m for help): 
-- Updated partition table
-  - Open gparted
-  - Change partition flags 
-    - Right click on partition
-    - Select Update flags
-    - LBA should be checked in addition check boot
-    [IMG]
-  - Resize
-    - Menu select Partition/Unmount
-    - 
-    
--   ## Create SD for EEPROM bootloader flash
+    - Delete old and create new partitions
+      - Open gparted
+      - Select proper disk under menu GParted/Devices identified in prior steps
+      - Remove all partitions using menu Partition/delete until entire disk is unallocated
+      - Create boot partition
+          - Select menu Device/Create Partition Table as MSDOS and Apply
+          - Create new primary partition table for boot with a minimum size of 250MB >= 239 MiB
+          - Click menu Partition/New
+          - Click Add
+        [IMG]
+          - Write changes to disk with menu Edit/Apply All Operations and click Apply
+      - Flag boot partition as bootable by right clicking on partition
+          - Select Manage Flags
+          - Select check both lvb and boot
+            [IMG]
+      - Create root partition from unallocated space
+          - Click menu Partition/New
+          - Update file system type to ext4
+          - Click Add
+          - Select menu Edit/Apply All operations to write changes to disk
+          - Click Apply                
+        
+## Create SD for EEPROM bootloader flash
+
+  
 ## Long method using CLI
 This method is meant to be used in cases where only a CLI interface to the RPI is available
 
